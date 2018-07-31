@@ -39,7 +39,7 @@ def google_authenticate(timeout=30, PORT_NUMBER=8080):
 
 def wait_for_auth(timeout=30, PORT_NUMBER=8080):
 
-    from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
+    from http.server import BaseHTTPRequestHandler,HTTPServer
     from urlparse import parse_qs, urlparse
     import sys
     global oauth_code
