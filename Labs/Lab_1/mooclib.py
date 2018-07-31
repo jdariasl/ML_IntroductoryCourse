@@ -12,12 +12,12 @@ def google_authenticate(timeout=30, PORT_NUMBER=8080):
                                           redirect_uri='http://localhost:'+str(PORT_NUMBER))
 
     auth_uri = flow.step1_get_authorize_url()
-    print "CLICK ON THIS LINK TO AUTHENTICATE WITH YOUR GMAIL ACCOUNT"
-    print auth_uri
+    print ("CLICK ON THIS LINK TO AUTHENTICATE WITH YOUR GMAIL ACCOUNT")
+    print (auth_uri)
     userinfo=None
     auth_code = wait_for_auth(timeout, PORT_NUMBER)
     if auth_code==None:
-        print "No authentication"
+        print ("No authentication")
         html = HTML("")
     else:
         credentials = flow.step2_exchange(auth_code)
@@ -60,10 +60,10 @@ def wait_for_auth(timeout=30, PORT_NUMBER=8080):
                 q = urlparse(self.path).query
                 tokens = q.split("=")
                 if len(tokens)==2 and tokens[0]=="code":
-                    print "authentication succeeded"
+                    print ("authentication succeeded")
                     oauth_code = tokens[1]
                 else:
-                    print q
+                    print (q)
                 return
             def log_message(self, format, *args):
                 return
@@ -71,7 +71,7 @@ def wait_for_auth(timeout=30, PORT_NUMBER=8080):
     #Create a web server and define the handler to manage the
     #incoming request
     server = HTTPServer(('', PORT_NUMBER), myHandler)
-    print 'waiting for authentication ...'
+    print ('waiting for authentication ...')
     sys.stdout.flush()
     server.timeout = timeout
     server.handle_request()
