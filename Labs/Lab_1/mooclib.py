@@ -22,8 +22,8 @@ def google_authenticate(timeout=30, PORT_NUMBER=8080):
     else:
         credentials = flow.step2_exchange(auth_code)
 
-        storage = Storage('/tmp/creds')
-        storage.put(credentials)
+        #storage = Storage('/tmp/creds')
+        #storage.put(credentials)
 
         http_auth = credentials.authorize(httplib2.Http())
 
@@ -55,7 +55,7 @@ def wait_for_auth(timeout=30, PORT_NUMBER=8080):
                 self.end_headers()
                 html = '<html><body onload="javascript:settimeout('+"'self.close()'"+',5000);"/>closing</html>'
                 html = '<html><body onload="self.close();"/>closing</html>'
-                self.wfile.write(html)
+                #self.wfile.write()
                 # Send the html message
                 q = urlparse(self.path).query
                 tokens = q.split("=")
@@ -79,23 +79,23 @@ def wait_for_auth(timeout=30, PORT_NUMBER=8080):
 
     return oauth_code
     
-import base64
-def encode(key, clear):
-    enc = []
-    clear = base64.urlsafe_b64encode("".join(clear))
-    # just comment
-    for i in range(len(clear)):
-        key_c = key[i % len(key)]
-        enc_c = chr((ord(clear[i]) + ord(key_c)) % 256)
-        enc.append(enc_c)
-    return base64.urlsafe_b64encode("".join(enc))
-
-def decode(key, enc):
-    dec = []
-    enc = base64.urlsafe_b64decode(enc)
-    for i in range(len(enc)):
-        key_c = key[i % len(key)]
-        dec_c = chr((256 + ord(enc[i]) - ord(key_c)) % 256)
-        dec.append(dec_c)
-    return base64.urlsafe_b64decode("".join(dec))
+#import base64
+#def encode(key, clear):
+#    enc = []
+#    clear = base64.urlsafe_b64encode("".join(clear))
+#    # just comment
+#    for i in range(len(clear)):
+#        key_c = key[i % len(key)]
+#        enc_c = chr((ord(clear[i]) + ord(key_c)) % 256)
+#        enc.append(enc_c)
+#    return base64.urlsafe_b64encode("".join(enc))
+#
+#def decode(key, enc):
+#    dec = []
+#    enc = base64.urlsafe_b64decode(enc)
+#    for i in range(len(enc)):
+#        key_c = key[i % len(key)]
+#        dec_c = chr((256 + ord(enc[i]) - ord(key_c)) % 256)
+#        dec.append(dec_c)
+#    return base64.urlsafe_b64decode("".join(dec))
 
