@@ -12,7 +12,7 @@ def google_authenticate(timeout=30, PORT_NUMBER=8080):
                                           redirect_uri='http://localhost:'+str(PORT_NUMBER))
 
     auth_uri = flow.step1_get_authorize_url()
-    print ("CLICK ON THIS LINK TO AUTHENTICATE WITH YOUR GMAIL ACCOUNT")
+    print ("Haga click en el siguiente enlace para autenticarse con su cuenta de correo institucional")
     print (auth_uri)
     userinfo=None
     auth_code = wait_for_auth(timeout, PORT_NUMBER)
@@ -20,10 +20,8 @@ def google_authenticate(timeout=30, PORT_NUMBER=8080):
         print ("No authentication")
         html = HTML("")
     else:
-        credentials = flow.step2_exchange(auth_code)
 
-        #storage = Storage('/tmp/creds')
-        #storage.put(credentials)
+        credentials = flow.step2_exchange(auth_code)
 
         http_auth = credentials.authorize(httplib2.Http())
 
@@ -33,14 +31,13 @@ def google_authenticate(timeout=30, PORT_NUMBER=8080):
                  +userinfo["email"]+"<br/>"
                  +userinfo["given_name"]+" "+userinfo["family_name"]+"<br/>"
                  +"google id: "+userinfo["id"]+"<br/>"
-                 +"authorization code: "+auth_code
                  +"</td></tr></table>")
     return html, auth_code, userinfo
 
 def wait_for_auth(timeout=30, PORT_NUMBER=8080):
 
     from http.server import BaseHTTPRequestHandler,HTTPServer
-    from urllib.parse import parse_qs, urlparse
+    from urllib.parse import urlparse
     import sys
     global oauth_code
     oauth_code = None
@@ -49,19 +46,19 @@ def wait_for_auth(timeout=30, PORT_NUMBER=8080):
             #Handler for the GET requests
             def do_GET(self):
                 global oauth_code
-                dummy="dummy"
                 self.send_response(200)
                 self.send_header('Content-type','text/html')
                 self.end_headers()
-                html = '<html><body onload="javascript:settimeout('+"'self.close()'"+',5000);"/>closing</html>'
-                html = '<html><body onload="self.close();"/>closing</html>'
-                #self.wfile.write()
+                #html = '<html><body onload="javascript:settimeout('+"'self.close()'"+',5000);"/>closing</html>'
+                html = b'<html><body onload="self.close();"/>closing</html>'
+                self.wfile.write(html)
                 # Send the html message
                 q = urlparse(self.path).query
                 tokens = q.split("=")
                 if len(tokens)==2 and tokens[0]=="code":
                     print ("authentication succeeded")
                     oauth_code = tokens[1]
+                    print(self.path)
                 else:
                     print (q)
                 return
@@ -79,23 +76,4 @@ def wait_for_auth(timeout=30, PORT_NUMBER=8080):
 
     return oauth_code
     
-#import base64
-#def encode(key, clear):
-#    enc = []
-#    clear = base64.urlsafe_b64encode("".join(clear))
-#    # just comment
-#    for i in range(len(clear)):
-#        key_c = key[i % len(key)]
-#        enc_c = chr((ord(clear[i]) + ord(key_c)) % 256)
-#        enc.append(enc_c)
-#    return base64.urlsafe_b64encode("".join(enc))
-#
-#def decode(key, enc):
-#    dec = []
-#    enc = base64.urlsafe_b64decode(enc)
-#    for i in range(len(enc)):
-#        key_c = key[i % len(key)]
-#        dec_c = chr((256 + ord(enc[i]) - ord(key_c)) % 256)
-#        dec.append(dec_c)
-#    return base64.urlsafe_b64decode("".join(dec))
 
