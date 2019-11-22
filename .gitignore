@@ -1,2 +1,4 @@
+**/.ipynb_checkpoints/*
+*.ipynb_checkpoinys/*
+**.directory
 
-\*.ipynb_checkpoints/
