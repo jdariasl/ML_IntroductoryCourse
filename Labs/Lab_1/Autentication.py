@@ -1,7 +1,7 @@
 def google_authenticate(timeout=30, PORT_NUMBER=8080):
 
     import httplib2
-    from apiclient import discovery
+    from googleapiclient import discovery
     from oauth2client import client
     from oauth2client.file import Storage
 
@@ -13,7 +13,7 @@ def google_authenticate(timeout=30, PORT_NUMBER=8080):
 
     auth_uri = flow.step1_get_authorize_url()
     print ("Haga click en el siguiente enlace para autenticarse con su cuenta de correo institucional")
-    print (auth_uri)
+    display(HTML(f'<a href="{auth_uri}">Click Aqui</a>'))    
     userinfo=None
     auth_code = wait_for_auth(timeout, PORT_NUMBER)
     if auth_code==None:
