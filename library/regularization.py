@@ -5,6 +5,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import cross_val_score
+from sklearn.svm import SVC
 
 # coding=utf-8
 def mapFeature(X1, X2, degree = 6):
@@ -73,7 +74,7 @@ def StandardLogisticRegression(X,Y,lam=0):
     plt.xlabel("Iteraciones")
     plotDecisionBoundary(w, Xent, Y);
 
-def PrintOverfitting():
+def PrintOverfittingReg():
     print(__doc__)
 
     def true_fun(X):
@@ -114,6 +115,41 @@ def PrintOverfitting():
         plt.legend(loc="best")
         plt.title("Degree {}\nMSE = {:.2e}(+/- {:.2e})".format(
             degrees[i], -scores.mean(), scores.std()))
+    plt.show()
+
+def PrintOverfittingClassify():
+    Gamma=[10,1,0.01]
+    n_samples = 50
+    mean = np.array((1, 2))
+    cov = [[1, 0], [0, 1]]
+    X1 = np.random.multivariate_normal(mean, cov, n_samples)
+    X2 = np.random.multivariate_normal(mean+1, cov, n_samples)
+    X = np.r_[X1,X2]
+    Y = np.r_[np.ones(n_samples),np.zeros(n_samples)]
+    plt.figure(figsize=(20,5))
+
+    for i,gamma in enumerate(Gamma):
+        #gamma = Gamma[i]
+        clf = SVC(gamma=gamma)
+        clf.fit(X,Y)
+        plt.subplot(1,3,i+1)
+        plt.scatter(X1[:,0],X1[:,1], marker='+')
+        plt.scatter(X2[:,0],X2[:,1], c= 'green', marker='o')
+        h = .02  # step size in the mesh
+        # create a mesh to plot in
+        x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+        y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+        xx, yy = np.meshgrid(np.arange(x_min, x_max, h),np.arange(y_min, y_max, h))
+
+
+        # Plot the decision boundary. For that, we will assign a color to each
+        # point in the mesh [x_min, m_max]x[y_min, y_max].
+        Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+
+        # Put the result into a color plot
+        Z = Z.reshape(xx.shape)
+        plt.contour(xx, yy, Z, cmap=plt.cm.Blues)
+        plt.title('SVC gamma={:.2f}'.format(gamma))
     plt.show()
 
 def main():
