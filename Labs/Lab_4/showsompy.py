@@ -21,6 +21,7 @@ def show(umat, som, distance2=1, row_normalized=False, show_data=True,
     fig, ax = plt.subplots(1, 1)
     imshow(umat, cmap=plt.cm.get_cmap('RdYlBu_r'), alpha=0.9)
     plt.axis('off')
+    plt.colorbar()
     
 
     if show_data:
