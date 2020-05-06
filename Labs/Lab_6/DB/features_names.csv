@@ -1,0 +1,23 @@
+Feature;Explanation
+LB;baseline value (SisPorto)
+AC;accelerations (SisPorto)
+FM;foetal movement (SisPorto)
+UC;uterine contractions (SisPorto)
+ASTV;percentage of time with abnormal short term variability  (SisPorto)
+mSTV;mean value of short term variability  (SisPorto)
+ALTV;percentage of time with abnormal long term variability  (SisPorto)
+mLTV;mean value of long term variability  (SisPorto)
+DL;light decelerations
+DS;severe decelerations
+DP;prolongued decelerations
+DR;repetitive decelerations
+Width;histogram width
+Min;low freq. of the histogram
+Max;high freq. of the histogram
+Nmax;number of histogram peaks
+Nzeros;number of histogram zeros
+Mode;histogram mode
+Mean;histogram mean
+Median;histogram median
+Variance;histogram variance
+Tendency;"histogram tendency: -1=left assymetric; 0=symmetric; 1=right assymetric"
