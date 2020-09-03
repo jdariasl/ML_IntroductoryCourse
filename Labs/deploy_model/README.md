@@ -1,8 +1,7 @@
-Welcome to the deploy-models wiki!
 
 # Introducción
 
-El código está disponible aqui. A continuación vamos a explorar acerca cómo desplegar fácilmente tus modelos en sklearn como un endpoint de API usando el framework fastAPI. Se recomienda estar familiarizado con sklearn y lo básico de APIs. 
+A continuación vamos a explorar acerca cómo desplegar fácilmente tus modelos en sklearn como un endpoint de API usando el framework fastAPI. Se recomienda estar familiarizado con sklearn y lo básico de APIs. 
 
 ## Antes de iniciar:
 
