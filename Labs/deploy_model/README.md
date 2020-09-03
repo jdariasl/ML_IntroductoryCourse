@@ -24,7 +24,7 @@ En este proyecto vamos a crear dos carpetas de la siguiente forma:
 
 > model
 > >  model_building.ipynb
->
+> > api_testing.ipynb
 > > model_neigh.joblib
 
 > api
