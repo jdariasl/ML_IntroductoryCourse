@@ -158,11 +158,11 @@ COPY ./app /app
 ```
 
 Ahora bien, vamos a construir la imagen:
-`docker build -t myapi .`
+`docker build -t skl-api .`
 
 
 Y correrla:
-`docker run -d --name myapicontainer -p 80:80 myapi`
+`docker run -d --name apicontainer -p 80:80 skl-api`
 
 ¡Y eso es todo! Ya puede realizar solicitudes en `http://localhost/predict`.
 
