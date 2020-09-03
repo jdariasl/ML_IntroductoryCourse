@@ -82,6 +82,11 @@ dump(neigh, 'model_neigh.joblib')
 
 Ahora bien, ya tenemos entrenado y guardado el modelo ya podemos construir el endpoint.
 
+
+* Para probar la API requerimos de datos de prueba, por esta razón, vamos en un archivo plano la partición `X_test`, en este caso será en .csv
+
+`np.savetxt('X_test.csv', data, delimiter=',')`
+
 # Contruyendo la API
 
 Vamos a crear la API, dentro de la carpeta `/api` usaremos el archivo `main.py`
