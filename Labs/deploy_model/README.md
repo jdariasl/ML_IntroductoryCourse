@@ -10,8 +10,8 @@ El código está disponible aqui. A continuación vamos a explorar acerca cómo 
 Aquí hay algunos recursos que pueden ayudarte a familiarizarte:
 
 
-* Documentación de fastAPI [link](https://fastapi.tiangolo.com/)
-* Introducción a APIs [link](https://www.freecodecamp.org/news/what-is-an-api-in-english-please-b880a3214a82/)
+* Documentación de [fastAPI](https://fastapi.tiangolo.com/)
+* Introducción a APIs [APIs](https://www.freecodecamp.org/news/what-is-an-api-in-english-please-b880a3214a82/)
 
 Y se deja como alternativa el uso de docker para correr la API, para ello se debe tener previamente instalado docker.
 
@@ -48,7 +48,7 @@ En este proyecto vamos a crear dos carpetas de la siguiente forma:
 
 # Construir el modelo
 
-Se puede usar cualquier notebook que está disponible en el repositorio del curso [link](https://github.com/jdariasl/ML_IntroductoryCourse/tree/master/Labs), en este caso vamos a usar un ejemplo sencillo para mejor ilustración, se va a entrenar un K vecinos más cercano con el dataset iris, esto se hará en el archivo `model_building.ipynb`
+Se puede usar cualquier notebook que está disponible en el repositorio del [curso](https://github.com/jdariasl/ML_IntroductoryCourse/tree/master/Labs), en este caso vamos a usar un ejemplo sencillo para mejor ilustración, se va a entrenar un K vecinos más cercano con el dataset iris, esto se hará en el archivo `model_building.ipynb`
 
 Estas son las librerías que usaremos:
 ```
