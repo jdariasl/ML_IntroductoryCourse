@@ -184,6 +184,10 @@ Vamos a cargar .csv de prueba y se enviará como parámetro tipo json, de esta f
 df = pd.read_csv('/model/X_test.csv')
 X_test = df.to_numpy()
 data = {"data": X_test.tolist()}
+```
+Lo guardamos como una lista y lo añadimos como si fuera un diccionario para enviarlo.
+Y ahora, con librería `request` hacemos la petición 
+```
 r = requests.post('http://localhost/predict', json = data)
 r.json()
 
