@@ -15,12 +15,6 @@ Aquí hay algunos recursos que pueden ayudarte a familiarizarte:
 
 Y se deja como alternativa el uso de docker para correr la API, para ello se debe tener previamente instalado docker.
 
-Ahora sí, para iniciar vamos a ejecutar los siguientes comandos.
-```
-git clone https://github.com/deiry/deploy-models
-
-cd deploy_models
-```
 
 # Estructura del proyecto
 
