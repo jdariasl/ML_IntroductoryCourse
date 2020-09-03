@@ -85,7 +85,7 @@ Ahora bien, ya tenemos entrenado y guardado el modelo ya podemos construir el en
 
 * Para probar la API requerimos de datos de prueba, por esta razón, vamos en un archivo plano la partición `X_test`, en este caso será en .csv
 
-`np.savetxt('X_test.csv', data, delimiter=',')`
+`np.savetxt('X_test.csv', X_test, delimiter=',')`
 
 # Contruyendo la API
 
