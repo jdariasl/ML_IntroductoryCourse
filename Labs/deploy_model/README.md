@@ -21,7 +21,9 @@ En este proyecto se tiene dos carpetas distribuidas de la siguiente forma:
 
 > model
 > > model_building.ipynb
+>
 > > api_testing.ipynb
+>
 > > model_neigh.joblib
 
 > api
