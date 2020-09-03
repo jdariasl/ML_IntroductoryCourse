@@ -89,7 +89,7 @@ Ahora bien, ya tenemos entrenado y guardado el modelo ya podemos construir el en
 
 # Contruyendo la API
 
-Vamos a crear la API, dentro de la carpeta `/api` usaremos el archivo `main.py`
+Vamos a crear la API, dentro de la carpeta `/app` usaremos el archivo `main.py`
 
 1. Importar librerías:
 
