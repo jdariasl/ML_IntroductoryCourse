@@ -168,7 +168,7 @@ Y correrla:
 
 
 # Probando la API
-En el notebook `model_building.ipynb` vamos a guardar en un .csv las muestras X_test, para luego cargarlos en el notebook `api_testing.ipynb`, esto simula que son datos nuevos que llegaron de forma externa.
+Cargarlos en el notebook `api_testing.ipynb` el archivo X_test.csv, esto simula que son datos nuevos que llegaron de forma externa.
 
 Para iniciar importaremos la librería `requests` para hacer la petición POST, y que nunca falte `numpy` y `pandas`
 
