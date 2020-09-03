@@ -91,8 +91,10 @@ Vamos a crear la API, dentro de la carpeta `/app` está el archivo `main.py`, en
 ```
 from fastapi import FastAPI
 from joblib import load
-from pydantic import  BaseModel
+from pydantic import  BaseModel, conlist
+from typing import List
 ```
+
 
 * FastAPI, framework que nos va a permitir desplegar el modelo
 * Joblib, librería para cargar el modelo guardado
