@@ -11,7 +11,7 @@ Aquí hay algunos recursos que pueden ayudarte a familiarizar:
 * Documentación de [fastAPI](https://fastapi.tiangolo.com/)
 * Introducción a [APIs](https://www.freecodecamp.org/news/what-is-an-api-in-english-please-b880a3214a82/)
 
-Y además el uso de docker que contiene la imagen con fastAPI y demás recursos, para ello se debe tener previamente instalado docker.
+Y además el uso de docker que contiene la imagen con fastAPI, por tal razón se debe tener previamente instalado docker.
 
 # Estructura del proyecto
 
@@ -26,14 +26,15 @@ En este proyecto se tiene dos carpetas distribuidas de la siguiente forma:
 >
 > > model_neigh.joblib
 
+
 > api
 > > main.py
 
 > Dockerfile
 
-
+Esta es la explicación de cada archivo:
 * `model/model_building.ipynb` -  Notebook para entrenar y guardar el modelo en un archivo con extensión 'joblib' 
-* `model/api_testing.ipynb` - Notebook para probar la API, una vez, se despliegue el modelo.
+* `model/api_testing.ipynb` - Notebook para probar la API, esto es una vez se despliegue el modelo.
 * `model/model_neigh.joblib` - Modelo entrenado.
 * `app/main.py` - ¡Aquí está la magia de la API!
 * `Dockerfile` - Instancia de docker
@@ -41,9 +42,9 @@ En este proyecto se tiene dos carpetas distribuidas de la siguiente forma:
 
 # Construir el modelo
 
-Se puede usar cualquier notebook disponible en el repositorio del [curso](https://github.com/jdariasl/ML_IntroductoryCourse/tree/master/Labs) para trabajar entrenar el modelo que se desea, en este caso vamos a usar un ejemplo sencillo para mejor ilustración. Se va a entrenar un K vecinos más cercano con el dataset iris, este dataset cuenta con 150 muestras y 4 carácterisitcas, lo haremos dentro del archivo `model_building.ipynb`.
+En este caso vamos a usar un dataset toy para mejor ilustración. Vamos a entrenar un K vecinos más cercano con el dataset iris, este dataset cuenta con 150 muestras y 4 carácterisitcas, esto lo haremos dentro del archivo `model_building.ipynb`.
 
-Estas son las librerías que usaremos:
+1. Importación de librerías:
 ```
 from sklearn import datasets
 
@@ -54,7 +55,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 ```
 
-Ahora separamos el conjunto de entrenamiento y test,  esto es con el fin de probar la API con esta última partición para obtener sus predicciones. El 70% es para entrenamiento y el resto para test.
+2. Separar conjunto de entrenamiento y test:
+Ahora separamos el conjunto de entrenamiento y test,  esto es con el fin de probar la API con esta última partición y obtener sus predicciones. El 70% es para entrenamiento y el resto para test.
 
 ```
 (X, y) = datasets.load_iris(return_X_y=True)
@@ -64,6 +66,7 @@ X_train, y_train = X[0: split], y[0: split]
 X_test, y_test = X[split:N], y[split:N]
 ```
 
+3. Entrenamiento:
 A continuación, vamos a entrenar el modelo con 3 vecinos:
 
 ```
@@ -71,7 +74,8 @@ neigh = KNeighborsClassifier(n_neighbors=3)
 neigh.fit(X_train, y_train)
 ```
 
-Y una vez entrenado usaremos la librería joblib para guardar el modelo:
+4. Guardar modelo entrenado:
+Una vez entrenado usaremos la librería joblib para guardar el modelo:
 
 ```
 from joblib import dump, load
@@ -86,7 +90,7 @@ Ahora bien, ya tenemos entrenado y guardado el modelo ya podemos construir el en
 
 # Contruyendo la API
 
-Vamos a crear la API, dentro de la carpeta `/app` está el archivo `main.py`, en este archivo es donde vamos a trabajar.
+Ahora bien, vamos a consturir la AP, para ello abrimos la carpeta `/app`, el archivo `main.py`:
 
 1. Importar librerías:
 
@@ -129,7 +133,7 @@ def get_prediction(data: List):
             "pred_proba": log_proba}
 ```  
 
-Cade añadir que debemos convertir las predicciones que como `numpy.array()` en un lista, por esta razón, hacemos uso del método `tolist()`
+Cade añadir que debemos convertir las predicciones el `numpy.array()` en un lista, por esta razón, hacemos uso del método `tolist()`
 
 5. Inicializar el endpoint por método POST
 
